@@ -15,6 +15,11 @@ File fileToExport;
 File file;
 
 /** 
+ *  File for unexporting a pin
+ */
+File fileToUnexport;
+
+/** 
  * This function sets a GPIO pin to a given mode:
  *	 "in" = 0
  *	 "out" = 1
@@ -120,3 +125,25 @@ void write(int pinNumber, int value) {
 	}
 }
 
+/** 
+ * This function unexports the given pin
+ * Throws exception in case of error(at opening file, writing to file)
+ * Must be called for each exported pin at the end of the program
+ * Params:
+ *   pinNumber = GPIO pin to be unexported
+ */
+void unexport(int pinNumber)
+{
+	try {
+		fileToUnexport = File("/sys/class/gpio/unexport", "w");
+	} catch (std.exception.ErrnoException e){
+		throw new Exception("Cannot open export file");
+	}
+	
+	try {
+		fileToUnexport.write(pinNumber);
+	} catch (std.exception.ErrnoException e){
+		throw new Exception("Cannot write export file, make sure you use a GPIO pin for your board");
+	}
+
+}
