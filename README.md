@@ -5,6 +5,7 @@ Module for Raspberry Pi GPIO pins, written in D-Lang.
 GPIO Module works with sysfs and controls the pins through write and read operations.
 
 ## Functions implemented
+### Setting the pin mode
 ````rust
 void mode(int pinNumber, string pinMode)
 ````
@@ -20,6 +21,7 @@ The function will do the following:
 * Will open the export file to write the pin number, so that it can be used(using sysfs files: /sys/class/gpio/export).
 * Will set the direction of the pin with the given value(the /sys/class/gpio/gpio<pinNumber>/direction).
 
+### Reading from a pin
 ````rust
 int read(int pinNumber)
 ````
@@ -32,7 +34,7 @@ The function will do the following:
 * Will open the file in which the value is stored (/sys/class/gpio/gpio<pinNumber>/value).
 * Will read the value and will return it.
 
-
+### Writing to a pin
 ````rust
 void write(int pinNumber, int value)
 ````
@@ -44,6 +46,7 @@ The function will do the following:
 * Will check if the pin is an output pin and will throw an error in case the pin is an input pin.
 * Will open the file in which will write the value given as an argument(/sys/class/gpio/gpio<pinNumber>/value).
 
+### Unexporting a pin
 ````rust
 void unexport(int pinNumber)
 ````
