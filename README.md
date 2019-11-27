@@ -6,7 +6,7 @@ GPIO Module works with sysfs and controls the pins through write and read operat
 
 ## Functions implemented
 ### Setting the pin mode
-````rust
+````d
 void mode(int pinNumber, string pinMode);
 ````
 Set the mode for the given pin. The function takes the following arguments:
@@ -22,7 +22,7 @@ The function will do the following:
 * Will set the direction of the pin with the given value(the /sys/class/gpio/gpio<pinNumber>/direction).
 
 ### Reading from a pin
-````rust
+````d
 int read(int pinNumber);
 ````
 Read the value from the given pin. The only argument taken is:
@@ -35,7 +35,7 @@ The function will do the following:
 * Will read the value and will return it.
 
 ### Writing to a pin
-````rust
+````d
 void write(int pinNumber, int value);
 ````
 Write the value to the given pin. The function takes the following arguments:
@@ -47,7 +47,7 @@ The function will do the following:
 * Will open the file in which will write the value given as an argument(/sys/class/gpio/gpio<pinNumber>/value).
 
 ### Unexporting a pin
-````rust
+````d
 void unexport(int pinNumber);
 ````
 Unexport the given GPIO pin, given as an argument.
