@@ -63,19 +63,19 @@ import gpio;
 import core.thread;
 
 void main() {
-	int waitTime = 3, i = 0;
+    int waitTime = 3, i = 0;
     /* set GPIO pin 12 as an output pin */
-	gpio.mode(12, "out");
+    gpio.mode(12, "out");
     /* run for 100 times */
-	while (i++ < 100) {
+    while (i++ < 100) {
         /* turn off the LED */
-		gpio.write(12, 0);
+	    gpio.write(12, 0);
         /* wait 3 seconds */
-		Thread.sleep(waitTime.seconds);
+	    Thread.sleep(waitTime.seconds);
         /* turn on the LED */
-		gpio.write(12, 1);
+	    gpio.write(12, 1);
         /* wait another 3 seconds */
-		Thread.sleep(waitTime.seconds);
+	    Thread.sleep(waitTime.seconds);
 	}
     /* unexport GPIO pin 12 */
 	gpio.unexport(12);
