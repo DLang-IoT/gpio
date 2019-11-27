@@ -7,7 +7,7 @@ GPIO Module works with sysfs and controls the pins through write and read operat
 ## Functions implemented
 ### Setting the pin mode
 ````rust
-void mode(int pinNumber, string pinMode)
+void mode(int pinNumber, string pinMode);
 ````
 Set the mode for the given pin. The function takes the following arguments:
 * the number of the pin (must be a valid GPIO pin)
@@ -23,7 +23,7 @@ The function will do the following:
 
 ### Reading from a pin
 ````rust
-int read(int pinNumber)
+int read(int pinNumber);
 ````
 Read the value from the given pin. The only argument taken is:
 * the number of the pin(also a valid and already exported pin)
@@ -36,7 +36,7 @@ The function will do the following:
 
 ### Writing to a pin
 ````rust
-void write(int pinNumber, int value)
+void write(int pinNumber, int value);
 ````
 Write the value to the given pin. The function takes the following arguments:
 * the number of the pin(must be a valid, already exportet output pin)
@@ -48,7 +48,7 @@ The function will do the following:
 
 ### Unexporting a pin
 ````rust
-void unexport(int pinNumber)
+void unexport(int pinNumber);
 ````
 Unexport the given GPIO pin, given as an argument.
 This function must be called for each exported pin at the end of the program.
