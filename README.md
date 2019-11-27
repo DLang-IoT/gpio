@@ -86,6 +86,7 @@ void main() {
 ````d
 import gpio;
 import std.stdio;
+import core.thread;
 
 void main() {
     int waitTime = 5;
