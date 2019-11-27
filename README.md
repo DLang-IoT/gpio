@@ -19,7 +19,7 @@ Set the mode for the given pin. The function takes the following arguments:
 
 The function will do the following:
 * Will open the export file to write the pin number, so that it can be used(using sysfs files: /sys/class/gpio/export).
-* Will set the direction of the pin with the given value(the /sys/class/gpio/gpio<pinNumber>/direction).
+* Will set the direction of the pin with the given value(the /sys/class/gpio/gpio_pinNumber_/direction).
 
 ### Reading from a pin
 ````d
@@ -31,7 +31,7 @@ Read the value from the given pin. The only argument taken is:
 The function returns the value from the pin;
 
 The function will do the following:
-* Will open the file in which the value is stored (/sys/class/gpio/gpio<pinNumber>/value).
+* Will open the file in which the value is stored (/sys/class/gpio/gpio_pinNumber_/value).
 * Will read the value and will return it.
 
 ### Writing to a pin
@@ -44,7 +44,7 @@ Write the value to the given pin. The function takes the following arguments:
 
 The function will do the following:
 * Will check if the pin is an output pin and will throw an error in case the pin is an input pin.
-* Will open the file in which will write the value given as an argument(/sys/class/gpio/gpio<pinNumber>/value).
+* Will open the file in which will write the value given as an argument(/sys/class/gpio/gpio_pinNumber_/value).
 
 ### Unexporting a pin
 ````d
@@ -55,3 +55,21 @@ This function must be called for each exported pin at the end of the program.
 The function will do the following:
 * Will open the unexport file (/sys/class/gpio/unexport)
 * Will write the pin number there.
+
+## Example: Blinking LED
+````d
+import gpio;
+import core.thread;
+
+void main() {
+	int waitTime = 3, i = 0;
+	gpio.mode(12, "out");
+	while (i++ < 100) {
+		gpio.write(12, 0);
+		Thread.sleep(waitTime.seconds);
+		gpio.write(12, 1);
+		Thread.sleep(waitTime.seconds);
+	}
+	gpio.unexport(12);
+}
+````
