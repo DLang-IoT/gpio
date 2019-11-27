@@ -69,16 +69,16 @@ void main() {
     /* run for 100 times */
     while (i++ < 100) {
         /* turn off the LED */
-	    gpio.write(12, 0);
+        gpio.write(12, 0);
         /* wait 3 seconds */
-	    Thread.sleep(waitTime.seconds);
+        Thread.sleep(waitTime.seconds);
         /* turn on the LED */
-	    gpio.write(12, 1);
+        gpio.write(12, 1);
         /* wait another 3 seconds */
-	    Thread.sleep(waitTime.seconds);
+        Thread.sleep(waitTime.seconds);
 	}
     /* unexport GPIO pin 12 */
-	gpio.unexport(12);
+    gpio.unexport(12);
 }
 ````
 
